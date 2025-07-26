@@ -53,7 +53,7 @@ if st.button("Get My Birthday Color",type="primary"):
 )
     st.markdown(
 f"Your birthday colour is so cool! And for reference, your birthday hex code is **#{birthday_hex.upper()}**"
-
+    )
 
     
 #name the color
