@@ -1,12 +1,9 @@
 import streamlit as st
 import datetime
-import webcolors
-
 
 
 # Set minimum date
 min_birth_date = datetime.date(1900, 1, 1)
-
 
 
 st.title('What''s Your Birthday Color? 🎂🎂🎂')
@@ -23,8 +20,8 @@ st.write("Your birthday is:", your_birthday.strftime("%d %B %Y"))
 
 if st.button("Get My Birthday Color",type="primary"):
 
-# Review dateinput and see if month is single or double digit. If former, do nothing. If latter, convert it into a modulo w 16777216 
-# Convert date into string
+    # Review dateinput and see if month is single or double digit. If former, do nothing. If latter, convert it into a modulo w 16777216 
+    # Convert date into string
     day = your_birthday.day
     month = your_birthday.month
     year = your_birthday.year
@@ -56,10 +53,12 @@ if st.button("Get My Birthday Color",type="primary"):
 )
     st.markdown(
 f"Your birthday colour is so cool! And for reference, your birthday hex code is **#{birthday_hex.upper()}**"
-)
+
 
     
-    
+#name the color
+# import webcolors
+
     # birthday_hex_name = str('#'+'birthday_hex')
     # #st.write('Birthday hex value: #',birthday_hex)
     
