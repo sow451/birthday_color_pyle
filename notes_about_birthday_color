@@ -1,0 +1,77 @@
+A hex code is a base-16 (hexadecimal) number used to represent values compactly.
+
+Python has a hex () function, and as I was learning about that, I thought it would be interesting to build a project that takes your birth-date and converts it into a hex code and derives your birthday colour.
+
+About hexa decimal numbers: 
+
+One hex digit = 4 binary digits (bits)
+Two hex digits = 1 byte (8 bits)
+Common in: memory addresses, RGB color codes, file encoding, and more
+
+| Decimal | Hex |
+| ------- | --- |
+| 0–9     | 0–9 |
+| 10      | A   |
+| 11      | B   |
+| 12      | C   |
+| 13      | D   |
+| 14      | E   |
+| 15      | F   |
+
+So 15 in decimal is F in hex.
+
+How is a hexadecimal number derived? You can use hex(number) in python, and if you want to do it manually: 
+hex(75)
+= First divide the number by 16
+75/16 = 4, with remainder 11
+Write 4: Then for 11, see the table above, the value is B, so hex of 75 = 4B
+
+
+No2 back to colour codes: 
+
+A hex color code (like #FF5733) is a compact way to represent RGB (Red, Green, Blue) color values — and it’s based on hexadecimal (base-16) instead of decimal (base-10), where: RR is Red (00–FF = 0–255), GG is Green(0-255) and BB is Blue (0-255). 
+
+Computers store and process everything in binary (0s and 1s).
+
+A color is just a combination of 3 numbers: Red, Green, and Blue. Each of colour values is stored as 8 bits. 
+
+
+
+
+8 bits = 1 byte.
+i.e. 8 bits is basically a bit (2 values) multipled 8 times
+i.e. 8 bits = 2 × 2 × 2 × 2 × 2 × 2 × 2 × 2 = 256 combinations
+
+
+Why is 0–255 perfect for a color channel ( or sufficient?). ChatGPT says, Human eyes can distinguish millions of colors, but we don’t need infinite precision. 256 shades of a colour channel (lets say... red is: enough to go from black to pure red, small enough numerically to store compactly).
+
+Why Not 10 or 16 Bits per channel? Well, sometimes we do use more (like 10-bit or 16-bit color in pro video, HDR, RAW images), but for most screens, websites, and PNGs, 8 bits per channel is the sweet spot for quality + performance.
+
+
+So going back, to represent colour, we have 3 dials say, R, G and B: Each dial has 256 positions — that’s fine enough for the human eye in most cases. Combining different intensities of R, G, and B light lets us recreate almost every color we perceive.
+
+| Channel | Bits | Values |
+| ------- | ---- | ------ |
+| Red     | 8    | 0–255  |
+| Green   | 8    | 0–255  |
+| Blue    | 8    | 0–255  |
+
+When we do 256 × 256 × 256? → One value (0–255) for each channel → 3 channels → total possible combinations = 16.7 million colors.
+
+
+In this project: 
+
+I taken input from the user
+Handled it as an integer
+Formatted it as a proper 6-digit hex string. 
+
+Initially to convert to hex, I wanted to do this: 
+If the DDMMYYYY Is less than 16,777,215 then use that integer and make the hex code of that
+If the DDMMYYYY Is larger than 16,777,215 then module, take the remainder, and use that integer and make the hex code of that. Why? That means a maximum value of 0xFFFFFF = 16,777,215. Many valid dates like 23071995 = 23,071,995 — which is too big for a 6-digit hex. Inthe DDMMYYYY format, only birthdays before ~1926 result in values < 16,777,215.
+
+
+
+Finally, I ended up with code where the code take a user's birth date and formats it into a string in the form DDmYYYY if the month is a single digit, or DDMMYYYY if it's two digits. It then converts this string into an integer (birthday_int). If this integer is larger than the maximum value for a 6-digit hex color (16777215 or 0xFFFFFF), it applies a modulo operation to bring it within that range. This ensures the resulting value can always be safely converted into a valid 6-digit hexadecimal color code.
+
+Tried using a library to find the name of the colour - but didn't get this far. Maybe next version.
+S
